@@ -1,0 +1,343 @@
+/* Custom styles extending Tailwind CSS */
+:root {
+    --primary-color: #4F46E5;
+    --primary-hover: #4338CA;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #F9FAFB;
+    color: #111827;
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 60px; /* Space for footer */
+}
+
+h1 {
+    color: #008cba;
+}
+
+form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+input, textarea {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Button styles are now handled directly by Tailwind classes in the HTML */
+
+/* Danger button variant */
+.btn-danger {
+    background-color: white;
+    color: #DC2626;
+    border: 2px solid #FCA5A5;
+}
+
+img {
+    height: 100px;
+    margin-bottom: 20px;
+}
+
+.feedback-list {
+    padding: 20px;
+}
+
+.feedback-items {
+    list-style: none;
+    padding: 0;
+}
+
+.feedback-item {
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.feedback-item h3 {
+    color: #008cba;
+    margin: 0 0 10px 0;
+}
+
+.message {
+    line-height: 1.6;
+    color: #555;
+}
+
+.timestamp {
+    display: block;
+    color: #888;
+    font-size: 0.85em;
+    margin-top: 15px;
+    font-style: italic;
+}
+
+nav {
+    margin: 20px 0;
+    padding: 10px 0;
+    border-bottom: 2px solid #eee;
+}
+
+nav a {
+    color: #008cba;
+    text-decoration: none;
+    margin-right: 20px;
+    font-weight: bold;
+}
+
+.feedback-list {
+    margin-top: 20px;
+}
+
+.feedback-items {
+    list-style-type: none;
+    padding: 0;
+}
+
+.feedback-item {
+    background: white;
+    margin: 15px 0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.feedback-item h3 {
+    color: #008cba;
+    margin: 0 0 10px 0;
+}
+
+.message {
+    color: #666;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Button styles are now handled by the modern button classes above */
+
+.actions {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.no-feedback {
+    text-align: center;
+    padding: 40px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.feedback-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+}
+
+.feedback-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-small {
+    padding: 5px 10px;
+    font-size: 0.9em;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+}
+
+.form-container {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    max-width: 600px;
+    margin: 30px auto;
+}
+
+.form-fields {
+    margin-bottom: 25px;
+}
+
+.form-field {
+    margin-bottom: 20px;
+}
+
+.form-field label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: bold;
+}
+
+.form-field input,
+.form-field textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.form-field textarea {
+    min-height: 120px;
+}
+
+.field-errors {
+    color: #dc3545;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+/* Delete Confirmation Styles */
+.delete-confirmation {
+    text-align: center;
+}
+
+.alert {
+    padding: 20px;
+    border-radius: 4px;
+    margin: 20px 0;
+}
+
+.alert-danger {
+    background-color: #fff5f5;
+    border: 1px solid #dc3545;
+    color: #dc3545;
+}
+
+.feedback-preview {
+    background: #f8f9fa;
+    padding: 15px;
+    border-left: 4px solid #ddd;
+    margin: 15px 0;
+    text-align: left;
+    color: #666;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+/* Thank You Page Styles */
+.thank-you-container {
+    text-align: center;
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.thank-you-container h1 {
+    color: #28a745;
+    margin-bottom: 20px;
+    font-size: 2.5em;
+}
+
+.message-box {
+    margin: 30px 0;
+}
+
+.thank-you-message {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.sub-message {
+    color: #666;
+    font-size: 1em;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+/* Custom button styles */
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 9999px;
+    color: white;
+    background-color: #8B5CF6;
+    border: 2px solid transparent;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 2px 4px rgba(139, 92, 246, 0.1);
+}
+
+.btn-primary:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 1px 2px rgba(139, 92, 246, 0.1);
+}
+
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 9999px;
+    color: #4B5563;
+    background-color: white;
+    border: 2px solid #E5E7EB;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.btn-secondary:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Danger button variant */
+.btn-secondary.text-red-600 {
+    color: #DC2626;
+    border-color: #FCA5A5;
+}
+
+/* Button icon styles */
+.btn-primary svg,
+.btn-secondary svg {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+    transition: transform 0.2s ease-in-out;
+}
+

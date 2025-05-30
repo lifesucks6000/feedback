@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}Submit Feedback{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto">
+    <div class="sm:flex sm:items-center mb-8">
+        <div class="sm:flex-auto">
+            <h1 class="text-3xl font-bold text-gray-900">Share Your Feedback</h1>
+            <p class="mt-2 text-sm text-gray-700">We value your input and are committed to improving based on your feedback.</p>
+        </div>
+    </div>
+
+    <div class="bg-white shadow-sm rounded-lg p-6">
+        <form method="POST" class="space-y-6">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="{{ form.name.id_for_label }}" class="form-label">Your Name</label>
+                {{ form.name }}
+                {% if form.name.errors %}
+                    <div class="mt-2 text-sm text-red-600">
+                        {{ form.name.errors }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.message.id_for_label }}" class="form-label">Your Message</label>
+                {{ form.message }}
+                {% if form.message.errors %}
+                    <div class="mt-2 text-sm text-red-600">
+                        {{ form.message.errors }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="flex items-center justify-end space-x-4">                <a href="{% url 'feedback_list' %}" class="px-4 py-2 bg-blue-50 text-blue-700 text-sm font-medium rounded hover:bg-blue-100 transition-colors">
+                    Cancel
+                </a>
+                <button type="submit" class="px-4 py-2 bg-[#0095b6] text-white text-sm font-medium rounded inline-flex items-center hover:bg-[#007d99] transition-colors">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Submit Feedback
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
