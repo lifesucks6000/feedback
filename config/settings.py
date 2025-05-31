@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-1234567890')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True  # Set to False in production
+DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*']
 
@@ -23,12 +23,18 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*']
 # USE_X_FORWARDED_PORT = True
 
 # Database
+import dj_database_url
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# Override with PostgreSQL in production
+if 'DATABASE_URL' in os.environ:
+    DATABASES['default'] = dj_database_url.parse(os.environ['DATABASE_URL'])
 
 
 # Application definition
@@ -119,16 +125,22 @@ STATICFILES_DIRS = [
 # Simplified static file serving
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Security settings configured for mixed HTTP/HTTPS
-SECURE_SSL_REDIRECT = False  # Don't force HTTPS in development
-SESSION_COOKIE_SECURE = False  # Allow cookies over HTTP
-CSRF_COOKIE_SECURE = False  # Allow CSRF over HTTP
+# Security settings configured for production
+SECURE_SSL_REDIRECT = os.environ.get('SECURE_SSL_REDIRECT', 'False').lower() == 'true'
+SESSION_COOKIE_SECURE = os.environ.get('SESSION_COOKIE_SECURE', 'False').lower() == 'true'
+CSRF_COOKIE_SECURE = os.environ.get('CSRF_COOKIE_SECURE', 'False').lower() == 'true'
 SECURE_BROWSER_XSS_FILTER = True  # Enable XSS filtering
 SECURE_CONTENT_TYPE_NOSNIFF = True  # Enable content type nosniff
-SECURE_HSTS_SECONDS = 0  # Disable HSTS for development
-SECURE_HSTS_INCLUDE_SUBDOMAINS = False
-SECURE_HSTS_PRELOAD = False
-CSRF_TRUSTED_ORIGINS = ['http://localhost:8000', 'http://127.0.0.1:8000']  # Add trusted origins
+SECURE_HSTS_SECONDS = int(os.environ.get('SECURE_HSTS_SECONDS', '0'))
+SECURE_HSTS_INCLUDE_SUBDOMAINS = os.environ.get('SECURE_HSTS_INCLUDE_SUBDOMAINS', 'False').lower() == 'true'
+SECURE_HSTS_PRELOAD = os.environ.get('SECURE_HSTS_PRELOAD', 'False').lower() == 'true'
+
+# CSRF trusted origins - add your Heroku app URL here
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:8000', 
+    'http://127.0.0.1:8000',
+    # Add your Heroku app URL here like: 'https://your-app-name.herokuapp.com'
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
