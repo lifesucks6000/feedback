@@ -1,0 +1,16 @@
+[build]
+  command = "python manage.py collectstatic --noinput"
+  publish = "staticfiles"
+  functions = "netlify/functions"
+
+[dev]
+  command = "python manage.py runserver"
+  port = 8000
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[build.environment]
+  PYTHON_VERSION = "3.11"
