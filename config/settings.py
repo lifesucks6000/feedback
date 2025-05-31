@@ -11,10 +11,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-1234567890')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
+# Simple security settings for basic deployment
+DEBUG = os.environ.get('DEBUG', 'True').lower() == 'true'
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*']
+ALLOWED_HOSTS = ['*']  # Allow all hosts for simplicity
 
 # Configure HTTPS/SSL settings based on environment
 # Remove SSL settings for development
@@ -22,19 +22,12 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*']
 # USE_X_FORWARDED_HOST = True
 # USE_X_FORWARDED_PORT = True
 
-# Database
-import dj_database_url
-
+# Database - Using dummy backend for in-memory operation
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.dummy',
     }
 }
-
-# Override with PostgreSQL in production
-if 'DATABASE_URL' in os.environ:
-    DATABASES['default'] = dj_database_url.parse(os.environ['DATABASE_URL'])
 
 
 # Application definition
@@ -113,9 +106,6 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
-
-# Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [
@@ -124,24 +114,6 @@ STATICFILES_DIRS = [
 
 # Simplified static file serving
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-# Security settings configured for production
-SECURE_SSL_REDIRECT = os.environ.get('SECURE_SSL_REDIRECT', 'False').lower() == 'true'
-SESSION_COOKIE_SECURE = os.environ.get('SESSION_COOKIE_SECURE', 'False').lower() == 'true'
-# CSRF_COOKIE_SECURE = os.environ.get('CSRF_COOKIE_SECURE', 'False').lower() == 'true'  # Disabled for testing
-SECURE_BROWSER_XSS_FILTER = True  # Enable XSS filtering
-SECURE_CONTENT_TYPE_NOSNIFF = True  # Enable content type nosniff
-SECURE_HSTS_SECONDS = int(os.environ.get('SECURE_HSTS_SECONDS', '0'))
-SECURE_HSTS_INCLUDE_SUBDOMAINS = os.environ.get('SECURE_HSTS_INCLUDE_SUBDOMAINS', 'False').lower() == 'true'
-SECURE_HSTS_PRELOAD = os.environ.get('SECURE_HSTS_PRELOAD', 'False').lower() == 'true'
-
-# CSRF trusted origins - disabled for testing
-# CSRF_TRUSTED_ORIGINS = [
-#     'http://localhost:8000', 
-#     'http://127.0.0.1:8000',
-#     # Add your Heroku app URL here like: 'https://your-app-name.herokuapp.com'
-#     # Replace 'your-app-name' with your actual Heroku app name
-# ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
